@@ -9,5 +9,12 @@
     <h1>Hello World</h1>
     <li></li>
 </body>
-<script></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script>
+    const socket = io();
+
+    socket.on('newReading', (reading) => {
+        console.log(reading);
+    })
+</script>
 </html>
