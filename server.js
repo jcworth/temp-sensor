@@ -24,6 +24,7 @@ mongoose
 
 // Mongoose model creation
 const Reading = new mongoose.model('Reading', {
+    created_at_UTC: {type: Date, default: Date.now},
     temperature: String,
     humidity: String
 });
@@ -40,7 +41,6 @@ function querySensor() {
             console.warn(err);
         } else {
             let newReading = new Reading({
-                created_at: {type: Date, default: Date.now},
                 temperature,
                 humidity
             });    
@@ -48,7 +48,7 @@ function querySensor() {
                 if (err) throw err;
             });    
             io.emit('newReading', newReading);
-            console.log(Date() + `\nTemperature: ${temperature}°C, Humidity: ${humidity}%`);
+            console.log(Date() + `\nTemperature: ${temperature.toFixed(2)}°C\nHumidity: ${humidity.toFixed(2)}%`);
             setTimeout(querySensor, 2000);
         }    
     })    
