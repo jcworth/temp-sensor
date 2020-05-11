@@ -7,24 +7,83 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <li></li>
+    <canvas id="chart" ></canvas>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
 <script>
-    const socket = io();
+    const context = document.getElementById('chart').getContext('2d');
+    
+    const xAxisLabels = [];
+    const chartTempData = [{x: new Date(), y: 24}, { x: new Date(), y: 32}]
+    console.log(new Date().getUTCMinute());
+    
 
+    const linechart = new Chart(context, {
+        type: 'line',
+        data: {
+            // labels: ['Hours'],
+            datasets: [
+                {
+                    label: 'Temperature',
+                    backgroundColor: 'rgba(0, 0, 0, 1)',
+                    borderColor: 'rgba(0, 0, 0, 0.5)',
+                    fill: false,
+                    data: chartTempData
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Temperature and Humidity'
+            },
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    time: {
+                        unit: 'second'
+                    },
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Hour'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Temperature'
+                    }
+                }]
+            }
+        }
+    })
+    const socket = io();
+    
     socket.on('newReading', (reading) => {
-        console.log(reading);
+        console.log(reading.created_at_UTC);
+        let readDate = new Date(reading.created_at_UTC);
+        let readHour = readDate.getHours();
+        let readTemp = { x: readDate, y: reading.temperature }; 
+        let readHumid = { x: readDate, y: reading.humidity };
+        addData(readhour, readTemp, readHumid);
     })
 
+    function addData(time, temperature, humidity) {
+        // Push data to chart data arrays
+        chartTempData.push(temperature);
+        chart.update()
+    }
+
     function retrieveData() {
-        fetch('http:localhost:3000/readings')
+        fetch('http://localhost:3000/reading')
             .then(response => response.json())
             .then((data) => {
                 console.log(data);
             })
     };
-
 </script>
 </html>
