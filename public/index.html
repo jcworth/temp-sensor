@@ -16,7 +16,7 @@
     
     const xAxisLabels = [];
     const chartTempData = []
-
+    
     const lineChart = new Chart(context, {
         type: 'line',
         data: {
@@ -25,7 +25,9 @@
                 {
                     label: 'Temperature',
                     backgroundColor: 'rgba(0, 0, 0, 1)',
-                    borderColor: 'rgba(0, 0, 0, 0.5)',
+                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                    borderWidth: 0.8,
+                    pointRadius: 2,
                     fill: false,
                     data: chartTempData
                 }
@@ -54,6 +56,11 @@
                     scaleLabel: {
                         display: true,
                         labelString: 'Temperature'
+                    },
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 30,
+                        stepSize: 2
                     }
                 }]
             }
@@ -72,6 +79,7 @@
     function addData(time, temperature, humidity) {
         // Push data to chart data arrays
         chartTempData.push(temperature);
+        chartTempData.shift()
         lineChart.update()
     }
 
@@ -79,8 +87,9 @@
         fetch('http://localhost:3000/reading')
             .then(response => response.json())
             .then((data) => {
-                console.log(data);
+                chartTempData.push(data);
             })
     };
+    window.addEventListener('load', retrieveData());
 </script>
 </html>
