@@ -15,11 +15,9 @@
     const context = document.getElementById('chart').getContext('2d');
     
     const xAxisLabels = [];
-    const chartTempData = [{x: new Date(), y: 24}, { x: new Date(), y: 32}]
-    console.log(new Date().getUTCMinute());
-    
+    const chartTempData = []
 
-    const linechart = new Chart(context, {
+    const lineChart = new Chart(context, {
         type: 'line',
         data: {
             // labels: ['Hours'],
@@ -48,7 +46,7 @@
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Hour'
+                        labelString: 'Time'
                     }
                 }],
                 yAxes: [{
@@ -66,16 +64,15 @@
     socket.on('newReading', (reading) => {
         console.log(reading.created_at_UTC);
         let readDate = new Date(reading.created_at_UTC);
-        let readHour = readDate.getHours();
         let readTemp = { x: readDate, y: reading.temperature }; 
         let readHumid = { x: readDate, y: reading.humidity };
-        addData(readhour, readTemp, readHumid);
+        addData(readTemp, readHumid);
     })
 
     function addData(time, temperature, humidity) {
         // Push data to chart data arrays
         chartTempData.push(temperature);
-        chart.update()
+        lineChart.update()
     }
 
     function retrieveData() {
