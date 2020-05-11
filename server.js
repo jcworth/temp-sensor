@@ -61,8 +61,7 @@ http.listen(port, () => {
 })
 
 app.get('/readings', (req, res) => {
-    Reading.find({}, (err, readings) => {
+    Reading.findOne({}, {}, { sort: { 'created_at' : -1 }}, (err, readings) => {
         res.send(readings);
     })
-    // res.send('Hello World')
 })
