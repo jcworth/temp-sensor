@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlEncoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: false}));
 
 
 // Mongoose Database connection
@@ -29,7 +29,7 @@ const Reading = new mongoose.model('Reading', {
 });
 
 // Socket
-const socket = require('socket.io')(http);
+const io = require('socket.io')(http);
 
 
 // Sensor reading every two seconds that saves to Mongo & emits to 
@@ -40,13 +40,14 @@ function querySensor() {
             console.warn(err);
         } else {
             let newReading = new Reading({
+                created_at: {type: Date, default: Date.now},
                 temperature,
                 humidity
             });    
             newReading.save((err) => {
                 if (err) throw err;
             });    
-            socket.emit('newReading', newReading);
+            io.emit('newReading', newReading);
             console.log(Date() + `\nTemperature: ${temperature}°C, Humidity: ${humidity}%`);
             setTimeout(querySensor, 2000);
         }    
@@ -59,7 +60,7 @@ http.listen(port, () => {
     console.log('Connected on port: ' + port);
 })
 
-http.get('/readings', (req, res) => {
+app.get('/readings', (req, res) => {
     Reading.find({}, (err, readings) => {
         res.send(readings);
     })
