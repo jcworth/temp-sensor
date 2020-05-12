@@ -15,7 +15,7 @@
     const context = document.getElementById('chart').getContext('2d');
     
     const xAxisLabels = [];
-    const chartTempData = []
+    let chartTempData = []
     
     const lineChart = new Chart(context, {
         type: 'line',
@@ -39,6 +39,10 @@
                 display: true,
                 text: 'Temperature and Humidity'
             },
+            animation: {
+                easing: 'easeInOutSine',
+		duration: 1500
+            },
             scales: {
                 xAxes: [{
                     type: 'time',
@@ -49,7 +53,7 @@
                     scaleLabel: {
                         display: true,
                         labelString: 'Time'
-                    }
+                    },
                 }],
                 yAxes: [{
                     display: true,
@@ -58,7 +62,7 @@
                         labelString: 'Temperature'
                     },
                     ticks: {
-                        suggestedMin: 0,
+                        suggestedMin: 00,
                         suggestedMax: 30,
                         stepSize: 2
                     }
@@ -70,26 +74,37 @@
     
     socket.on('newReading', (reading) => {
         console.log(reading.created_at_UTC);
-        let readDate = new Date(reading.created_at_UTC);
-        let readTemp = { x: readDate, y: reading.temperature }; 
-        let readHumid = { x: readDate, y: reading.humidity };
-        addData(readTemp, readHumid);
+        let newRead = translateReading(reading);
+        addData(newRead);
     })
 
-    function addData(time, temperature, humidity) {
+   function translateReading(reading) {
+    	let readDate = new Date(reading.created_at_UTC);
+        let readTemp = { x: readDate, y: reading.temperature }; 
+        let readHumid = { x: readDate, y: reading.humidity };
+	let newReading = { readDate, readTemp, readHumid };
+        return newReading;
+    }
+
+   function addData(newReading) {
         // Push data to chart data arrays
-        chartTempData.push(temperature);
-        lineChart.update()
-        // chartTempData.shift()
+        chartTempData.push(newReading.readTemp);
+	if (chartTempData.length > 30) {
+		chartTempData.shift()	
+	}
+        lineChart.update();
     }
 
     function retrieveData() {
         fetch('http://localhost:3000/reading')
             .then(response => response.json())
             .then((data) => {
-                chartTempData.push(data);
+		data.forEach((reading) => {
+		let newRead = translateReading(reading)		
+		addData(newRead)
+		})
             })
     };
-    // window.addEventListener('load', retrieveData());
+    window.addEventListener('load', retrieveData());
 </script>
 </html>

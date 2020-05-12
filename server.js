@@ -37,7 +37,8 @@ const sensorLib = require('node-dht-sensor');
 function querySensor() {
     sensorLib.read(22, 4, (err, temperature, humidity) => {
         if (err) {
-            console.warn(err);
+            console.log(err);
+	    setTimeout(querySensor, 2000);
         } else {
             let newReading = new Reading({
                 temperature,
