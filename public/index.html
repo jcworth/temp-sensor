@@ -69,37 +69,27 @@
     const socket = io();
     
     socket.on('newReading', (reading) => {
-        // console.log(reading.created_at_UTC);
-        let readingObject = transformReading(reading)
-            .then(addData(readingObject))
-            .catch(console.log('Error: No reading received'))
-    })
-
-    function transformReading(reading) {
+        console.log(reading.created_at_UTC);
         let readDate = new Date(reading.created_at_UTC);
         let readTemp = { x: readDate, y: reading.temperature }; 
         let readHumid = { x: readDate, y: reading.humidity };
-        return { readDate, readTemp, readHumid };
-    }
-    function addData(readingObject) {
+        addData(readTemp, readHumid);
+    })
+
+    function addData(time, temperature, humidity) {
         // Push data to chart data arrays
-        chartTempData.push(readingObject.readTemp);
-        chartTempData.shift()
+        chartTempData.push(temperature);
         lineChart.update()
+        // chartTempData.shift()
     }
 
     function retrieveData() {
         fetch('http://localhost:3000/reading')
             .then(response => response.json())
-            .then((readingData) => {
-                readingData.forEach((reading) => {
-                    const newReading = transformReading(reading);
-                    chartTempData.push(newReading);
-                })
+            .then((data) => {
+                chartTempData.push(data);
             })
-            .then(lineChart.update())
-            .catch(console.log('Error: No data retrieved');)
     };
-    window.addEventListener('onload', retrieveData());
+    // window.addEventListener('load', retrieveData());
 </script>
 </html>
