@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 const url = process.env.MONGO_DB
 mongoose
 .connect(url, {useNewUrlParser: true})
-.then('open', () => {
+.then(() => {
     console.log('MongoDB connected on: ' + url);
 })
 .catch('error', (err) => {
@@ -32,13 +32,12 @@ const Reading = new mongoose.model('Reading', {
 // Socket
 const io = require('socket.io')(http);
 
-// Sensor reading every two seconds that saves to Mongo & emits to 
+// Sensor reading that saves to Mongo & emits to socket 
 const sensorLib = require('node-dht-sensor');
 function querySensor() {
     sensorLib.read(22, 4, (err, temperature, humidity) => {
         if (err) {
             console.log(err);
-	    setTimeout(querySensor, 2000);
         } else {
             let newReading = new Reading({
                 temperature,
@@ -49,11 +48,10 @@ function querySensor() {
             });    
             io.emit('newReading', newReading);
             // console.log(Date() + `\nTemperature: ${temperature.toFixed(2)}°C\nHumidity: ${humidity.toFixed(2)}%`);
-            setTimeout(querySensor, 2000);
         }    
     })    
-}    
-querySensor()
+};
+
 
 // Server connection and routing
 http.listen(port, () => {
@@ -65,3 +63,5 @@ app.get('/reading', (req, res) => {
         res.send(reading);
     })
 })
+
+setInterval(querySensor, 5000)

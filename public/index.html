@@ -14,7 +14,6 @@
 <script>
     const context = document.getElementById('chart').getContext('2d');
     
-    const xAxisLabels = [];
     let chartTempData = []
     
     const lineChart = new Chart(context, {
@@ -41,7 +40,7 @@
             },
             animation: {
                 easing: 'easeInOutSine',
-		duration: 1500
+                duration: 1000
             },
             scales: {
                 xAxes: [{
@@ -69,42 +68,43 @@
                 }]
             }
         }
-    })
+    });
+
     const socket = io();
     
     socket.on('newReading', (reading) => {
         console.log(reading.created_at_UTC);
         let newRead = translateReading(reading);
         addData(newRead);
-    })
+    });
 
    function translateReading(reading) {
     	let readDate = new Date(reading.created_at_UTC);
         let readTemp = { x: readDate, y: reading.temperature }; 
         let readHumid = { x: readDate, y: reading.humidity };
-	let newReading = { readDate, readTemp, readHumid };
+        let newReading = { readDate, readTemp, readHumid };
         return newReading;
-    }
+    };
 
    function addData(newReading) {
         // Push data to chart data arrays
         chartTempData.push(newReading.readTemp);
-	if (chartTempData.length > 30) {
-		chartTempData.shift()	
-	}
+        if (chartTempData.length > 30) {
+            chartTempData.shift();
+        }
         lineChart.update();
-    }
+    };
 
     function retrieveData() {
         fetch('http://localhost:3000/reading')
             .then(response => response.json())
             .then((data) => {
-		data.forEach((reading) => {
-		let newRead = translateReading(reading)		
-		addData(newRead)
-		})
-            })
+		        data.forEach((reading) => {
+                    let newRead = translateReading(reading)		
+                    addData(newRead);
+                })
+            });
     };
-    window.addEventListener('load', retrieveData());
+    //window.addEventListener('load', retrieveData());
 </script>
 </html>
