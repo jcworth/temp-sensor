@@ -9,6 +9,13 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+// Error logging 
+const fs = require('fs');
+function writeErr(error) {
+    fs.appedFile('./error_log.txt', `${Date()}\n${error}`, (err) => {
+        if (err) console.log(err);
+    })
+};
 
 // Mongoose Database connection
 const mongoose = require('mongoose');
@@ -38,6 +45,7 @@ function querySensor() {
     sensorLib.read(22, 4, (err, temperature, humidity) => {
         if (err) {
             console.log(err);
+            writeErr(err);
         } else {
             let newReading = new Reading({
                 temperature,
@@ -45,6 +53,7 @@ function querySensor() {
             });    
             newReading.save((err) => {
                 if (err) throw err;
+                writeErr(err);
             });    
             io.emit('newReading', newReading);
             // console.log(Date() + `\nTemperature: ${temperature.toFixed(2)}°C\nHumidity: ${humidity.toFixed(2)}%`);
@@ -52,16 +61,16 @@ function querySensor() {
     })    
 };
 
-
 // Server connection and routing
 http.listen(port, () => {
     console.log('Connected on port: ' + port);
-})
+});
 
 app.get('/reading', (req, res) => {
     Reading.find({}, {}, { sort: { 'created_at_UTC' : -1 }}).limit(20).exec((err, reading) => {
         res.send(reading);
     })
-})
+});
+
 
 setInterval(querySensor, 5000)
