@@ -38,7 +38,6 @@ function querySensor() {
     sensorLib.read(22, 4, (err, temperature, humidity) => {
         if (err) {
             console.log(err);
-	    //setTimeout(querySensor, 2000);
         } else {
             let newReading = new Reading({
                 temperature,
@@ -48,13 +47,11 @@ function querySensor() {
                 if (err) throw err;
             });    
             io.emit('newReading', newReading);
-            console.log(Date() + `\nTemperature: ${temperature.toFixed(2)}°C\nHumidity: ${humidity.toFixed(2)}%`);
-            //setTimeout(querySensor, 5000);
+            // console.log(Date() + `\nTemperature: ${temperature.toFixed(2)}°C\nHumidity: ${humidity.toFixed(2)}%`);
         }    
     })    
-}    
+};
 
-setInterval(querySensor, 5000)
 
 // Server connection and routing
 http.listen(port, () => {
@@ -66,3 +63,5 @@ app.get('/reading', (req, res) => {
         res.send(reading);
     })
 })
+
+setInterval(querySensor, 5000)
