@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 // Error logging 
 const fs = require('fs');
 function writeErr(error) {
-    fs.appedFile('./error_log.txt', `${Date()}\n${error}`, (err) => {
+    fs.appendFile('./error_log.txt', `${Date()}\n${error}`, (err) => {
         if (err) console.log(err);
     })
 };
