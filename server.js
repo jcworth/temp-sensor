@@ -56,6 +56,7 @@ function sensorQuery() {
       };
     });
   });
+};
 //   sensorLib.read(22, 4, (err, temperature, humidity) => {
 //     if (err) {
 //       console.log(err);
@@ -75,7 +76,7 @@ async function sensorProcess() {
   try {
     let newRead = await sensorQuery();
     newRead.save((err) => {
-      console.log(err);
+      if (err) throw new Error(err)
       writeErr(err);
     });
     io.emit('newReading', newRead);
