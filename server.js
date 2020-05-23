@@ -9,7 +9,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// Error logging 
+// Error logging
 const fs = require('fs');
 function writeErr(error) {
     fs.appendFile('./error_log.txt', `\n${Date()}\n${error}`, (err) => {
@@ -39,29 +39,53 @@ const Reading = new mongoose.model('Reading', {
 // Socket
 const io = require('socket.io')(http);
 
-// Sensor reading that saves to Mongo & emits to socket 
-const sensorLib = require('node-dht-sensor');
-function querySensor() {
-    sensorLib.read(22, 4, (err, temperature, humidity) => {
-        if (err) {
-            console.log(err);
-            writeErr(err);
-        } else {
-            let newReading = new Reading({
-                temperature,
-                humidity
-            });    
-            newReading.save((err) => {
-                if (err) {
-                    console.log(err);
-                    writeErr(err);
-                }
-            });    
-            io.emit('newReading', newReading);
-            // console.log(Date() + `\nTemperature: ${temperature.toFixed(2)}°C\nHumidity: ${humidity.toFixed(2)}%`);
-        }    
-    })    
+function sensorQuery() {
+  sensorLib.read(22, 4, (err, temperature, humidity) => {
+    if (err) {
+      console.log(err);
+      writeErr(err)
+    } else {
+      let newReading = new Reading({
+          temperature,
+          humidity
+        });
+      return newReading;
+    };
+  });
 };
+
+async function sensorProcess() {
+  const newRead = await sensorQuery();
+  newRead.save((err) => {
+    console.log(err);
+    writeErr(err);
+  });
+  io.emit('newReading', newRead);
+};
+
+// Sensor reading that saves to Mongo & emits to socket
+// const sensorLib = require('node-dht-sensor');
+// function querySensor() {
+//     sensorLib.read(22, 4, (err, temperature, humidity) => {
+//         if (err) {
+//             console.log(err);
+//             writeErr(err);
+//         } else {
+//             let newReading = new Reading({
+//                 temperature,
+//                 humidity
+//             });
+//             newReading.save((err) => {
+//                 if (err) {
+//                     console.log(err);
+//                     writeErr(err);
+//                 }
+//             });
+//             io.emit('newReading', newReading);
+//             // console.log(Date() + `\nTemperature: ${temperature.toFixed(2)}°C\nHumidity: ${humidity.toFixed(2)}%`);
+//         }
+//     })
+// };
 
 // Server connection and routing
 http.listen(port, () => {
