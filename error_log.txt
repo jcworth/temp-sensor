@@ -1,0 +1,10 @@
+Thu May 14 2020 17:09:14 GMT+0100 (British Summer Time)
+Error: failed to initialize sensorThu May 14 2020 17:09:19 GMT+0100 (British Summer Time)
+Error: failed to initialize sensorThu May 14 2020 17:09:24 GMT+0100 (British Summer Time)
+Error: failed to initialize sensorThu May 14 2020 17:09:29 GMT+0100 (British Summer Time)
+Error: failed to initialize sensorThu May 14 2020 17:09:34 GMT+0100 (British Summer Time)
+Error: failed to initialize sensorThu May 14 2020 17:09:39 GMT+0100 (British Summer Time)
+Error: failed to initialize sensorThu May 14 2020 17:09:44 GMT+0100 (British Summer Time)
+Error: failed to initialize sensorThu May 14 2020 17:09:49 GMT+0100 (British Summer Time)
+Error: failed to initialize sensorThu May 14 2020 17:09:54 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor

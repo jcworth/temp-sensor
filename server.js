@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 // Error logging 
 const fs = require('fs');
 function writeErr(error) {
-    fs.appendFile('./error_log.txt', `${Date()}\n${error}`, (err) => {
+    fs.appendFile('./error_log.txt', `\n${Date()}\n${error}`, (err) => {
         if (err) console.log(err);
     })
 };
@@ -52,8 +52,10 @@ function querySensor() {
                 humidity
             });    
             newReading.save((err) => {
-                if (err) throw err;
-                writeErr(err);
+                if (err) {
+                    console.log(err);
+                    writeErr(err);
+                }
             });    
             io.emit('newReading', newReading);
             // console.log(Date() + `\nTemperature: ${temperature.toFixed(2)}°C\nHumidity: ${humidity.toFixed(2)}%`);
