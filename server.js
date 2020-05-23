@@ -41,23 +41,39 @@ const io = require('socket.io')(http);
 const sensorLib = require('node-dht-sensor');
 
 function sensorQuery() {
-  sensorLib.read(22, 4, (err, temperature, humidity) => {
-    if (err) {
-      console.log(err);
-      writeErr(err)
-    } else {
-      let newReading = new Reading({
+  return new Promise((resolve, reject) => {
+    sensorLib.read(22, 4, (err, temperature, humidity) => {
+      if (err) {
+        console.log(err);
+        writeErr(err);
+        reject('Reading failed');
+      } else {
+        let newReading = new Reading({
           temperature,
           humidity
         });
-      return newReading;
-    };
+        resolve(newReading);
+      };
+    });
   });
-};
+//   sensorLib.read(22, 4, (err, temperature, humidity) => {
+//     if (err) {
+//       console.log(err);
+//       writeErr(err)
+//     } else {
+//       let newReading = new Reading({
+//         temperature,
+//         humidity
+//       });
+//       console.log(newReading);
+//       return newReading;
+//     };
+//   });
+// };
 
 async function sensorProcess() {
   try {
-    const newRead = await sensorQuery();
+    let newRead = await sensorQuery();
     newRead.save((err) => {
       console.log(err);
       writeErr(err);
@@ -103,6 +119,5 @@ app.get('/reading', (req, res) => {
         res.send(reading);
     })
 });
-
 
 setInterval(sensorProcess, 5000)
