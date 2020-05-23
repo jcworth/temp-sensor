@@ -38,6 +38,7 @@ const Reading = new mongoose.model('Reading', {
 
 // Socket
 const io = require('socket.io')(http);
+const sensorLib = require('node-dht-sensor');
 
 function sensorQuery() {
   sensorLib.read(22, 4, (err, temperature, humidity) => {
@@ -55,12 +56,17 @@ function sensorQuery() {
 };
 
 async function sensorProcess() {
-  const newRead = await sensorQuery();
-  newRead.save((err) => {
+  try {
+    const newRead = await sensorQuery();
+    newRead.save((err) => {
+      console.log(err);
+      writeErr(err);
+    });
+    io.emit('newReading', newRead);
+  }
+  catch(err) {
     console.log(err);
-    writeErr(err);
-  });
-  io.emit('newReading', newRead);
+  }
 };
 
 // Sensor reading that saves to Mongo & emits to socket
@@ -99,4 +105,4 @@ app.get('/reading', (req, res) => {
 });
 
 
-setInterval(querySensor, 5000)
+setInterval(sensorProcess, 5000)
