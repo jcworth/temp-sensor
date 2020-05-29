@@ -21,13 +21,13 @@ function writeErr(error) {
 const mongoose = require('mongoose');
 const url = process.env.MONGO_DB
 mongoose
-.connect(url, {useNewUrlParser: true})
-.then(() => {
-    console.log('MongoDB connected on: ' + url);
-})
-.catch('error', (err) => {
-    console.log('Error: ' + err);
-});
+  .connect(url, {useNewUrlParser: true})
+  .then(() => {
+      console.log('MongoDB connected on: ' + url);
+  })
+  .catch('error', (err) => {
+      console.log('Error: ' + err);
+  });
 
 // Mongoose model creation
 const Reading = new mongoose.model('Reading', {
@@ -45,7 +45,6 @@ function sensorQuery() {
   return new Promise((resolve, reject) => {
     sensorLib.read(22, 4, (err, temperature, humidity) => {
       if (err) {
-        console.log(err);
         writeErr(err);
         reject('Reading failed');
       } else {
@@ -59,13 +58,14 @@ function sensorQuery() {
   });
 };
 
-// Async function attempts to make call teh sensor function and log to the database
+// Async function attempts to make call the sensor function and log to the database
 async function sensorProcess() {
   try {
     let newRead = await sensorQuery();
     newRead.save((err) => {
-      if (err) throw new Error(err)
-      writeErr(err);
+      if (err) {
+        writeErr(err);
+      };
     });
     io.emit('newReading', newRead);
   }
