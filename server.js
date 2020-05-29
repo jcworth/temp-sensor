@@ -45,7 +45,6 @@ function sensorQuery() {
   return new Promise((resolve, reject) => {
     sensorLib.read(22, 4, (err, temperature, humidity) => {
       if (err) {
-        console.log(err);
         writeErr(err);
         reject('Reading failed');
       } else {
@@ -64,8 +63,9 @@ async function sensorProcess() {
   try {
     let newRead = await sensorQuery();
     newRead.save((err) => {
-      if (err) throw new Error(err)
-      writeErr(err);
+      if (err) {
+        writeErr(err);
+      };
     });
     io.emit('newReading', newRead);
   }

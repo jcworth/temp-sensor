@@ -112,7 +112,10 @@
                     labelString: 'Humidity'
                   },
                   id: 'y-humid',
-                  type: 'linear'
+                  type: 'linear',
+                  gridLines: {
+                    drawChartOnArea: false,
+                  }
                 }
               ]
             }
@@ -139,8 +142,9 @@
         // Push data to chart data arrays
         chartTempData.push(newReading.readTemp);
         chartHumidData.push(newReading.readHumid);
-        if (chartTempData.length > 10) {
+        if (chartTempData.length > 10 && chartHumidData.length > 10) {
             chartTempData.shift();
+            chartHumidData.shift();
         };
         lineChart.update();
         // currentHumid.innerText
