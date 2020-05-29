@@ -4612,3 +4612,147 @@ Fri May 29 2020 15:28:58 GMT+0100 (British Summer Time)
 Error: failed to initialize sensor
 Fri May 29 2020 15:28:58 GMT+0100 (British Summer Time)
 Reading failed
+Fri May 29 2020 15:29:03 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:03 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:08 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:08 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:13 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:13 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:18 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:18 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:23 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:23 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:28 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:28 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:33 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:33 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:38 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:38 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:43 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:43 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:48 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:48 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:53 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:53 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:29:58 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:29:58 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:03 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:03 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:08 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:08 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:13 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:13 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:18 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:18 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:23 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:23 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:28 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:28 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:33 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:33 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:38 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:38 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:43 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:43 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:48 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:48 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:53 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:53 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:30:58 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:30:58 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:03 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:03 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:08 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:08 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:13 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:13 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:18 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:18 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:23 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:23 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:28 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:28 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:33 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:33 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:38 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:38 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:43 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:43 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:48 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:48 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:53 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:53 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 15:31:58 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 15:31:58 GMT+0100 (British Summer Time)
+Reading failed
