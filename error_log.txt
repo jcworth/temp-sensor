@@ -5268,3 +5268,15 @@ Fri May 29 2020 15:42:38 GMT+0100 (British Summer Time)
 Error: failed to initialize sensor
 Fri May 29 2020 15:42:38 GMT+0100 (British Summer Time)
 Reading failed
+Fri May 29 2020 16:19:14 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 16:19:14 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 16:19:19 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 16:19:19 GMT+0100 (British Summer Time)
+Reading failed
+Fri May 29 2020 16:19:24 GMT+0100 (British Summer Time)
+Error: failed to initialize sensor
+Fri May 29 2020 16:19:24 GMT+0100 (British Summer Time)
+Reading failed

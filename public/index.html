@@ -13,18 +13,6 @@
   </div>
     <h3>Current Temperature: <span id="current-temp"></span>°C</h3>
     <h3>Current Humidity: <span id="current-humid"></span>%</h3>
-    <table>
-      <tr>
-        <th>Date</th>
-        <th>Temperature</th>
-        <th>Humidity</th>
-      </tr>
-      <tr>
-        <td>Data</td>
-        <td>Data</td>
-        <td>Data</td>
-    </tr>
-    </table>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
@@ -45,8 +33,7 @@
                   label: 'Temperature',
                   backgroundColor: 'rgba(255, 0, 0, 1)',
                   borderColor: 'rgba(255, 0, 0, 1)',
-                  fill: false,
-                  borderWidth: 0.9,
+                  borderWidth: 1.5,
                   pointRadius: 2,
                   fill: false,
                   data: chartTempData,
@@ -56,8 +43,7 @@
                   label: 'Humidity',
                   backgroundColor: 'rgba(30,144,255)',
                   borderColor: 'rgba(30,144,255)',
-                  fill: false,
-                  borderWidth: 0.9,
+                  borderWidth: 1.5,
                   pointRadius: 2,
                   fill: false,
                   data: chartHumidData,
@@ -92,7 +78,7 @@
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Temperature'
+                        labelString: 'Temperature (°C)'
                     },
                     ticks: {
                         suggestedMin: 00,
@@ -111,7 +97,7 @@
                   },
                   scaleLabel: {
                     display: true,
-                    labelString: 'Humidity'
+                    labelString: 'Humidity (%)'
                   },
                   id: 'y-humid',
                   type: 'linear',
