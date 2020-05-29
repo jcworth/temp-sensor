@@ -2,6 +2,10 @@ html {
   font-family: 'Inter', sans-serif;
 }
 
+body {
+  margin: 0 auto;
+}
+
 #chart-container {
   height: 75%;
   width: 75%;
