@@ -12,6 +12,7 @@
     <canvas id="chart"></canvas>
   </div>
     <h3>Current Temperature: <span id="current-temp"></span>°C</h3>
+    <h3>Current Humidity: <span id="current-humid"></span>%</h3>
     <table>
       <tr>
         <th>Date</th>
@@ -29,6 +30,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
 <script>
     const currentTemp = document.getElementById('current-temp');
+    const currentHumid = document.getElementById('current-humid');
     const context = document.getElementById('chart').getContext('2d');
 
     const chartTempData = []
@@ -44,7 +46,7 @@
                   backgroundColor: 'rgba(255, 0, 0, 1)',
                   borderColor: 'rgba(255, 0, 0, 1)',
                   fill: false,
-                  borderWidth: 0.8,
+                  borderWidth: 0.9,
                   pointRadius: 2,
                   fill: false,
                   data: chartTempData,
@@ -55,7 +57,7 @@
                   backgroundColor: 'rgba(30,144,255)',
                   borderColor: 'rgba(30,144,255)',
                   fill: false,
-                  borderWidth: 0.8,
+                  borderWidth: 0.9,
                   pointRadius: 2,
                   fill: false,
                   data: chartHumidData,
@@ -147,8 +149,8 @@
             chartHumidData.shift();
         };
         lineChart.update();
-        // currentHumid.innerText
-        currentTemp.innerText = newReading.readTemp.y.toFixed(2);
+        currentHumid.innerText = parseInt(newReading.readHumid.y).toFixed(1);
+        currentTemp.innerText = parseInt(newReading.readTemp.y).toFixed(1);
     };
 
     function retrieveData() {
